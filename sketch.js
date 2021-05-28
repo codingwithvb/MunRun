@@ -53,7 +53,7 @@ function setup() {
   nightHomePage.scale = 1.25; 
   nightHomePage.visible = false; 
 
-  jungleBackground = createSprite(displayWidth/2 + 100, displayHeight/2 - 50); 
+  jungleBackground = createSprite(displayWidth/2 + 150, displayHeight/2 - 50); 
   jungleBackground.addImage(jungleBackgroundImage);
   jungleBackground.scale = 0.965; 
   jungleBackground.visible = false; 
@@ -203,6 +203,8 @@ function draw() {
     levelSheet.visible = false; 
     nightHomePage.visible = false; 
 
+    monkey.y = displayHeight/2 + 160;  
+
   }
 
   if(gameState === "Level2"){
@@ -221,6 +223,8 @@ function draw() {
     level10.visible = false; 
     levelSheet.visible = false; 
     nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
 
   }
 
@@ -241,7 +245,157 @@ function draw() {
     levelSheet.visible = false; 
     nightHomePage.visible = false; 
 
+    monkey.y = displayHeight/2 + 160;  
+
   }
+  
+  if(gameState === "Level4"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+
+  if(gameState === "Level5"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+  
+  if(gameState === "Level6"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+  
+  if(gameState === "Level7"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+  
+  if(gameState === "Level8"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+  
+  if(gameState === "Level9"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+  
+  if(gameState === "Level10"){
+
+    jungleBackground.visible = true; 
+
+    level1.visible = false; 
+    level2.visible = false; 
+    level3.visible = false; 
+    level4.visible = false; 
+    level5.visible = false; 
+    level6.visible = false; 
+    level7.visible = false; 
+    level8.visible = false; 
+    level9.visible = false; 
+    level10.visible = false; 
+    levelSheet.visible = false; 
+    nightHomePage.visible = false; 
+
+    monkey.y = displayHeight/2 + 160;  
+
+  }
+  
 
   drawSprites(); 
 }
