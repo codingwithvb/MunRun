@@ -55,6 +55,12 @@ var Fire18, Fire28, Fire38;
 var Fire19, Fire29; 
 var Fire110, Fire210; 
 
+//declaring scores
+var score;
+var Bscore = 0; 
+var Sscore = 0; 
+var Gscore = 0;
+
 function preload(){
 
   monkeyAnimation = loadAnimation("images/MonkeyAnimations/Monkey_01.png","images/MonkeyAnimations/Monkey_02.png","images/MonkeyAnimations/Monkey_03.png","images/MonkeyAnimations/Monkey_04.png","images/MonkeyAnimations/Monkey_05.png","images/MonkeyAnimations/Monkey_06.png","images/MonkeyAnimations/Monkey_07.png","images/MonkeyAnimations/Monkey_08.png","images/MonkeyAnimations/Monkey_09.png","images/MonkeyAnimations/Monkey_10.png");
@@ -289,17 +295,20 @@ function setup() {
   Fire210.addImage(FireImage);
   Fire210.scale = 0.2; 
   Fire210.visible = false; 
+
+  score = 0; 
 }
 
 function draw() {
   background(174,229,224);
+
+  score = Bscore + Sscore + Gscore; 
 
   if(gameState === "HOME"){
 
     monkey.visible = true; 
     morningHomePage.visible = true; 
 
-    
     jungleBackground.visible = false; 
     bronzeCoin.visible = false; 
     silverCoin.visible = false;
@@ -307,6 +316,26 @@ function draw() {
     banana.visible = false; 
     homepageButton.visible = false;
     scoreboard.visible = false; 
+    PlasticBagForLevel3.visible = false;  
+    PlasticBag1ForLevel4.visible = false 
+    PlasticBag2ForLevel4.visible = false; 
+    PlasticBag1ForLevel5.visible = false, 
+    PlasticBag2ForLevel5.visible = false; 
+    PlasticBagForLevel9.visible = false;
+    PlasticBag1ForLevel10.visible = false;
+    PlasticBag2ForLevel10.visible = false; 
+    Fire6.visible = false; 
+    Fire17.visible = false;  
+    Fire27.visible = false;  
+    Fire18.visible = false;  
+    Fire28.visible = false;  
+    Fire38.visible = false;  
+    Fire19.visible = false; 
+    Fire29.visible = false; 
+    Fire110.visible = false;
+    Fire210.visible = false; 
+
+    score = 0; 
 
     if(frameCount % 50 <= 0){
 
@@ -375,7 +404,7 @@ function draw() {
     }
   }
 
-  if(gameState != "HOME"){
+  if(gameState != "HOME" && gameState != "WIN!" && gameState != "LOST!PLASTIC" && gameState != "LOST!FIRE"){
 
     jungleBackground.visible = true; 
     bronzeCoin.visible = true; 
@@ -397,11 +426,34 @@ function draw() {
     level10.visible = false; 
     levelSheet.visible = false; 
     nightHomePage.visible = false; 
+
+    textSize(20);
+    stroke("black");
+    fill("black");
+    text("#SaveTheEnvironment!", displayWidth/2 - 700, displayHeight/2 - 400); 
     
     monkey.velocityY =  monkey.velocityY + 0.8;
 
     if(monkey.isTouching(bronzeCoin)){
       bronzeCoin.visible = false; 
+      Bscore = Bscore + 1; 
+      console.log(score);
+    }
+
+    if(monkey.isTouching(silverCoin)){
+      silverCoin.visible = false; 
+      Sscore = Sscore + 2; 
+      score = score + 2; 
+    }
+
+    if(monkey.isTouching(goldCoin)){
+      goldCoin.visible = false; 
+      Gscore = Gscore + 3; 
+      score = score + 3;
+    }
+
+    if(monkey.isTouching(banana)){
+      gameState = "WIN!"; 
     }
 
     if(mousePressedOver(homepageButton)){
@@ -458,6 +510,10 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 100; 
     goldCoin.y = displayHeight/2 + 125; 
+
+    if(monkey.isTouching(PlasticBagForLevel3)){
+      gameState = "LOST!PLASTIC"
+    }
   }
   
   if(gameState === "Level4"){
@@ -473,6 +529,14 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 125; 
     goldCoin.y = displayHeight/2 + 75; 
+
+    if(monkey.isTouching(PlasticBag1ForLevel4)){
+      gameState = "LOST!PLASTIC"
+    }
+    if(monkey.isTouching(PlasticBag2ForLevel4)){
+      gameState = "LOST!PLASTIC"
+    }
+
   }
 
   if(gameState === "Level5"){
@@ -487,7 +551,14 @@ function draw() {
     silverCoin.y = displayHeight/2 + 75; 
 
     goldCoin.x = displayWidth/2 + 250; 
-    goldCoin.y = displayHeight/2 + 75; 
+    goldCoin.y = displayHeight/2 + 75;
+    
+    if(monkey.isTouching(PlasticBag1ForLevel5)){
+      gameState = "LOST!PLASTIC"
+    }
+    if(monkey.isTouching(PlasticBag2ForLevel5)){
+      gameState = "LOST!PLASTIC"
+    }
   }
   
   if(gameState === "Level6"){
@@ -502,6 +573,10 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 300; 
     goldCoin.y = displayHeight/2 + 100; 
+
+    if(monkey.isTouching(Fire6)){
+      gameState = "LOST!FIRE"; 
+    }
   }
   
   if(gameState === "Level7"){
@@ -517,6 +592,14 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 100; 
     goldCoin.y = displayHeight/2 + 100; 
+    
+    if(monkey.isTouching(Fire17)){
+      gameState = "LOST!FIRE"; 
+    }
+    
+    if(monkey.isTouching(Fire27)){
+      gameState = "LOST!FIRE"; 
+    }
   }
   
   if(gameState === "Level8"){
@@ -533,6 +616,18 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 100; 
     goldCoin.y = displayHeight/2 + 100; 
+    
+    if(monkey.isTouching(Fire18)){
+      gameState = "LOST!FIRE"; 
+    }
+    
+    if(monkey.isTouching(Fire28)){
+      gameState = "LOST!FIRE"; 
+    }
+    
+    if(monkey.isTouching(Fire38)){
+      gameState = "LOST!FIRE"; 
+    }
   }
   
   if(gameState === "Level9"){
@@ -549,6 +644,18 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 100; 
     goldCoin.y = displayHeight/2 + 100; 
+    
+    if(monkey.isTouching(Fire19)){
+      gameState = "LOST!FIRE"; 
+    }
+    
+    if(monkey.isTouching(Fire19)){
+      gameState = "LOST!FIRE"; 
+    }
+
+    if(monkey.isTouching(PlasticBagForLevel9)){
+      gameState = "LOST!PLASTIC"
+    }
   }
   
   if(gameState === "Level10"){
@@ -566,6 +673,169 @@ function draw() {
 
     goldCoin.x = displayWidth/2 + 350; 
     goldCoin.y = displayHeight/2 + 25; 
+
+    if(monkey.isTouching(Fire110)){
+      gameState = "LOST!FIRE"; 
+    }
+    
+    if(monkey.isTouching(Fire210)){
+      gameState = "LOST!FIRE"; 
+    }
+
+    if(monkey.isTouching(PlasticBag1ForLevel10)){
+      gameState = "LOST!PLASTIC"
+    }
+
+    if(monkey.isTouching(PlasticBag2ForLevel10)){
+      gameState = "LOST!PLASTIC"
+    }
+  }
+
+  if(gameState === "WIN!"){
+    
+    jungleBackground.visible = false; 
+    bronzeCoin.visible = false; 
+    silverCoin.visible = false;
+    goldCoin.visible = false; 
+    banana.visible = false; 
+    scoreboard.visible = false; 
+    PlasticBagForLevel3.visible = false;  
+    PlasticBag1ForLevel4.visible = false 
+    PlasticBag2ForLevel4.visible = false; 
+    PlasticBag1ForLevel5.visible = false, 
+    PlasticBag2ForLevel5.visible = false; 
+    PlasticBagForLevel9.visible = false;
+    PlasticBag1ForLevel10.visible = false;
+    PlasticBag2ForLevel10.visible = false; 
+    Fire6.visible = false; 
+    Fire17.visible = false;  
+    Fire27.visible = false;  
+    Fire18.visible = false;  
+    Fire28.visible = false;  
+    Fire38.visible = false;  
+    Fire19.visible = false; 
+    Fire29.visible = false; 
+    Fire110.visible = false; 
+    Fire210.visible = false; 
+
+    homepageButton.visible = true;
+
+    textSize(45); 
+    stroke("black");
+    fill("black");
+    text("You Won!", displayWidth/2 - 100, displayHeight/2 - 300);
+
+    textSize(30); 
+    text("Congrats on finishing this level!", displayWidth/2 - 150, displayHeight/2 - 150);
+
+    textSize(15);
+    text("Score: " + score, displayWidth/2 - 150, displayHeight/2); 
+
+    if(keyDown("r")){
+      gameState = "HOME"; 
+    }
+
+    if(mousePressedOver(homepageButton)){
+      gameState = "HOME"; 
+    }
+  }
+
+  if(gameState === "LOST!PLASTIC"){
+      
+    jungleBackground.visible = false; 
+    bronzeCoin.visible = false; 
+    silverCoin.visible = false;
+    goldCoin.visible = false; 
+    banana.visible = false; 
+    scoreboard.visible = false; 
+    PlasticBagForLevel3.visible = false;  
+    PlasticBag1ForLevel4.visible = false 
+    PlasticBag2ForLevel4.visible = false; 
+    PlasticBag1ForLevel5.visible = false, 
+    PlasticBag2ForLevel5.visible = false; 
+    PlasticBagForLevel9.visible = false;
+    PlasticBag1ForLevel10.visible = false;
+    PlasticBag2ForLevel10.visible = false; 
+    Fire6.visible = false; 
+    Fire17.visible = false;  
+    Fire27.visible = false;  
+    Fire18.visible = false;  
+    Fire28.visible = false;  
+    Fire38.visible = false;  
+    Fire19.visible = false; 
+    Fire29.visible = false; 
+    Fire110.visible = false; 
+    Fire210.visible = false; 
+
+    homepageButton.visible = true;
+
+    textSize(45); 
+    stroke("black");
+    fill("black");
+    text("You Lost!", displayWidth/2 - 100, displayHeight/2 - 300);
+
+    textSize(20); 
+    text("Many Animals Die because they can strangle due to Plastics, such as bottles and bags! ", displayWidth/2 - 450, displayHeight/2 - 150);
+
+    textSize(15);
+    text("Score: " + score, displayWidth/2 - 150, displayHeight/2); 
+
+    if(keyDown("r")){
+      gameState = "HOME"; 
+    }
+
+    if(mousePressedOver(homepageButton)){
+      gameState = "HOME"; 
+    }
+  }
+
+  if(gameState === "LOST!FIRE"){
+      
+    jungleBackground.visible = false; 
+    bronzeCoin.visible = false; 
+    silverCoin.visible = false;
+    goldCoin.visible = false; 
+    banana.visible = false; 
+    scoreboard.visible = false; 
+    PlasticBagForLevel3.visible = false;  
+    PlasticBag1ForLevel4.visible = false 
+    PlasticBag2ForLevel4.visible = false; 
+    PlasticBag1ForLevel5.visible = false, 
+    PlasticBag2ForLevel5.visible = false; 
+    PlasticBagForLevel9.visible = false;
+    PlasticBag1ForLevel10.visible = false;
+    PlasticBag2ForLevel10.visible = false; 
+    Fire6.visible = false; 
+    Fire17.visible = false;  
+    Fire27.visible = false;  
+    Fire18.visible = false;  
+    Fire28.visible = false;  
+    Fire38.visible = false;  
+    Fire19.visible = false; 
+    Fire29.visible = false; 
+    Fire110.visible = false; 
+    Fire210.visible = false; 
+
+    homepageButton.visible = true;
+
+    textSize(45); 
+    stroke("black");
+    fill("black");
+    text("You Lost!", displayWidth/2 - 100, displayHeight/2 - 300);
+
+    textSize(20); 
+    text("Many Animals Die because they can burn due to wildfires or when people burn trees to get land! ", displayWidth/2 - 450, displayHeight/2 - 150);
+
+    textSize(15);
+    text("Score: " + score, displayWidth/2 - 150, displayHeight/2); 
+
+    if(keyDown("r")){
+      gameState = "HOME"; 
+    }
+
+    if(mousePressedOver(homepageButton)){
+      gameState = "HOME"; 
+    }
   }
   
   monkey.collide(invisibleSpriteBottom);
@@ -573,4 +843,10 @@ function draw() {
   monkey.collide(invisibleSpriteRight); 
 
   drawSprites(); 
+
+  if(gameState != "HOME" && gameState != "WIN!" && gameState != "LOST!PLASTIC" && gameState != "LOST!FIRE"){
+    text(Bscore, displayWidth/2 - 550, displayHeight/2 - 190); 
+    text(Sscore, displayWidth/2 - 550, displayHeight/2 - 95); 
+    text(Gscore, displayWidth/2 - 550, displayHeight/2); 
+  }
 }
